@@ -1,9 +1,6 @@
 import HtmlWebPackPlugin from 'html-webpack-plugin';
 import * as path from 'path';
 
-// Importing config file
-import config from './config';
-
 const htmlPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
   filename: './index.html'
@@ -13,18 +10,8 @@ module.exports = {
   devServer: {
     hot: false,
     historyApiFallback: true,
-    proxy: {
-      // Images are placed in './public' and will be loaded like normal
-      '/img': {
-        target: `http://localhost:${config.backend.port}`
-      },
-      // API calls will always have /api/ on the front of the route.
-      '/api/*': {
-        target: `http://localhost:${config.backend.port}`
-      }
-    },
   },
-  entry: './src/index.tsx',
+  entry: './src/index.ts',
   resolve: {
     extensions: [ '.ts', '.tsx', '.js' ],
   },
